@@ -1,3 +1,7 @@
+Alunos:
+- Lucas Lima Romero (13676325)
+- Marco Antonio Gaspar Garcia (11833581)
+
 Questão 1)
 
 A definição formal de sistemas embarcado é:
