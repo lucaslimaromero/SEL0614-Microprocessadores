@@ -4,26 +4,27 @@ main:
 	; ---- Transferência de Dados ---- ;
 	MOV A, #12h		; Move imediatamente o valor 12 em hexadecimal para o acumulador
 
-	MOV A, #00h 	; Zera o acumulador
+	MOV A, #00h 		; Zera o acumulador
 	
 	; Os bits a seguir definem o banco de registradores desejado
-	CLR RS1 		; Definindo o banco 0
-	CLR RS0 		; Definindo o banco 0
+	CLR RS1 			; Definindo o banco 0
+	CLR RS0 			; Definindo o banco 0
 	MOV R2, #34h 	; Move o valor 34h para o registrador R2
 
 	MOV B, #56 		; Move imediatamente para o registrador B o valor 56h
 
 	MOV 0x40, P1 	; Move o conteúdo de P1 para o endereço 0x40
 
-	CLR RS1 		; Definindo o banco 1
-	SETB RS0		; Definindo o banco 1
+	CLR RS1 			; Definindo o banco 1
+	SETB RS0			; Definindo o banco 1
 
 	MOV R4, 0x40 	; Move o conteúdo do endereço 0x40 para o registrador R4
 	MOV 0x50, R4 	; Move o conteúdo do registrador R4 para o endereço 0x50
 
 	MOV R1, #01010000b ; 50 em hex = 80 em dec
 
-	MOV A, @R1 		; Move para A o conteúdo apontado pelo endereço que é igual ao valor contido em R1
+	MOV A, @R1 		; Move indiretamente R1 para A ou seja, move para A o conteúdo	
+							; apontado pelo endereço contido em R1
 
 	; Registrador de 16 bits
 	; Dividido em DPH e DPL, 8 em cada
@@ -36,23 +37,23 @@ main:
 	MOV R4, #7 		; Move o valor 7 para o registrador R4
 	
 	ADD A, R4 		; Soma, o valor é salvo em A
-	DEC A 			; Decrementa A em 1 (A--)
-	DEC A 			; Decrementa A em 1 (A--)
-	DEC A 			; Decrementa A em 1 (A--)
+	DEC A 				; Decrementa A em 1 (A--)
+	DEC A 				; Decrementa A em 1 (A--)
+	DEC A 				; Decrementa A em 1 (A--)
 	
-	INC B 			; Incrementa B em 1 (B++)
-	
+	INC B 				; Incrementa B em 1 (B++)
+		
 	SUBB A, B 		; Subtração, o valor é salvo em A 
 
-	MUL AB 			; Multiplicação, B fica zerado a partir daqui e o valor é salvo em A
+	MUL AB 				; Multiplicação, B fica zerado a partir daqui e o valor é salvo em A
 	
-	INC B 			; Incrementa B em 1 (B++)
-	INC B 			; Incrementa B em 1 (B++)
+	INC B 				; Incrementa B em 1 (B++)
+	INC B 				; Incrementa B em 1 (B++)
 	
-	DIV AB 			; Divisão, B fica zerado e o valor é salvo em A
+	DIV AB 				; Divisão, B fica zerado e o valor é salvo em A
 
-	MOV 0x70, A 	; Move o conteúdo do acumulador A para o endereço 0x70
-	MOV 0x71, B 	; Move o conteúdo do registrador B para o endereço 0x71
+	MOV 0x70, A 		; Move o conteúdo do acumulador A para o endereço 0x70
+	MOV 0x71, B 		; Move o conteúdo do registrador B para o endereço 0x71
 	
 	; ---- Instruções Lógicas Booleanas ---- ;
 	
@@ -82,7 +83,7 @@ main:
 	SWAP A 			; Troca os nibbles
 	; A = 01010101
 	
-	MOV PSW, A		; Move o conteúdo de A para o registrador PSW
+	MOV PSW, A	; Move o conteúdo de A para o registrador PSW
 	; PSW ficou com o último bit zerado (bit de paridade)
 	; 01010100
 
@@ -92,19 +93,21 @@ main:
 
 inicio:
 	MOV R0, #10h	; Move o valor 10h para R0
-	JZ bloco2 		; Pula para bloco2 caso A = 0
-	JNZ bloco3 		; Pula para bloco3 caso A != 0
-	NOP 			; No Operation
+	JZ bloco2 	; Pula para bloco2 caso A = 0
+	JNZ bloco3 	; Pula para bloco3 caso A != 0
+	NOP 				; No Operation
 
 bloco2:
-	MOV A, R0 		; Move o valor de R0 para A
+	MOV A, R0 	; Move o valor de R0 para A
 	; A = 10
-	JMP inicio 		; Pula incondicionalmente para "inicio"
+	JMP inicio	; Pula incondicionalmente para "inicio"
 
 bloco3:
 	DJNZ R0, bloco3	; Decresce R0 até ser zero. Quando for zero, pula para bloco3
 	CLR A 			; Limpa A
-	JMP inicio 		; Pula incondicionalmente para "inicio"
+	JMP inicio 	; Pula incondicionalmente para "inicio"
 
+HERE:
+	SJMP HERE 	; Trava o programa
 
 end
