@@ -107,7 +107,6 @@ bloco3:
 	CLR A 			; Limpa A
 	JMP inicio 	; Pula incondicionalmente para "inicio"
 
-HERE:
-	SJMP HERE 	; Trava o programa
+JMP $
 
 end

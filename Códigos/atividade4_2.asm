@@ -20,8 +20,7 @@ terceira_label:
 	CJNE R0, #24h, LOOP		; Pula a LOOP caso R0 seja diferente de 24h
 	NOP								; No Operation
 	
-HERE:
-	SJMP HERE						; Prende o programa
+JMP $							; Finaliza o programa
 
 ; O programa inicia com R0 = 20 e R1 = 0. Entao, na label LOOP, move-se de forma indireta R0 para o acumulador,
 ; significando que agora o acumulador guarda aquilo que era guardado no endereco 20, que era o valor
@@ -35,7 +34,5 @@ HERE:
 ; Em resumo, o programa procura (24 - R0) vezes valores menores que 45, nas posicoes apontadas por R0. A cada ciclo,
 ; R0 eh incrementado, e o programa procura em posicoes sequenciais. Caso o valor apontado seja menor que 45, eh incrementado
 ; R1, portanto, R1 salva a quantidade de valores encontrados menores que 45, nas posicoes apontadas por R0. 
-
-
 
 end
