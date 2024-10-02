@@ -19,9 +19,17 @@
 ; 6: x0000010
 ; 7: x0000111
 ; 8: x0000000
+; 9: x0011000
+;
+; Pode também fazer SETB P1.3 // CLR P1.3
+; JB 2.1, label (salta se o switch 1 estiver pressionado)
+; LED EQU P1.3 (variável)
+; SW B2.1
+; Chaves A1 e A0 selecionam o display (P3.3 e P3.4)
+; DJNZ R0, $
 
 org 0000h
-
+MOV SP, #4Fh
 
 ; Quando algum switch for pressionado, A < 0xFF
 standby: ; Nenhum switch pressionado.

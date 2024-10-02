@@ -4,7 +4,9 @@ Alunos:
 - Lucas Lima Romero (13676325)
 - Marco Antonio Gaspar Garcia (11833581)
 
-Questão 8) No simulador EdSim51, digite e execute (clicando em "Assm") as instruções abaixo:
+Questão 8) 
+
+No simulador EdSim51, digite e execute (clicando em "Assm") as instruções abaixo:
 
 MOV R0, #22h
 MOV 00h, #22h
