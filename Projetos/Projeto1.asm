@@ -1,102 +1,74 @@
-;1 = 0001
-;2 = 0010
-;3 = 0011
-;4 = 0100
-;5 = 0101
-;6 = 0110
-;7 = 0111
-;8 = 1000
-;9 = 1001
-;
-; O display acende no nível lógico 0.
-;    xgfedcba
-; 0: x1000000
-; 1: x1111001
-; 2: x0100100
-; 3: x0110000
-; 4: x0011001
-; 5: x0010010
-; 6: x0000010
-; 7: x0000111
-; 8: x0000000
-; 9: x0011000
-;
-; Pode também fazer SETB P1.3 // CLR P1.3
-; JB 2.1, label (salta se o switch 1 estiver pressionado)
-; LED EQU P1.3 (variável)
-; SW B2.1
-; Chaves A1 e A0 selecionam o display (P3.3 e P3.4)
-; DJNZ R0, $
-
 org 0000h
-MOV SP, #4Fh
 
-; Quando algum switch for pressionado, A < 0xFF
-standby: ; Nenhum switch pressionado.
-	MOV B, P2
-	MOV A, #0xFF
-	CLR C
-	SUBB A, B
-	JZ standby
-	; Se chegou aqui, algum switch foi pressionado.
-	JMP show
+; Nomeando as variáveis
+SW EQU P2
+SW0 EQU P2.0
+SW1 EQU P2.1
+DISPLAY EQU P1
+MOV DPTR, #database	; Aponta DPTR para o início do array 'display'
+MOV R0, #0
 
-check_sw0:
-	; Se A = 0xFE, o sw0 foi pressionado
-	; Se A = 0xFD, o sw1 foi pressionado
-	; Se A = 0xFC, os dois sw foram pressionados
-	; O 1 prevalece sobre o 0.
-	CJNE A, #01h, sw1
-	; Se chegou aqui, somente 0 foi pressionado
-	ACALL DELAY_LOOP_START
-	RET
+; Verificar se algum switch está pressionado
+STANDBY:
+	CLR CY
+	MOV A, #0FFh
+	SUBB A, SW
+	JZ STANDBY	; se A != 0, passa reto
+	MOV R0, #0	; Inicializa R0 com 0, o índice do número a ser mostrado
+	
+; se veio até aqui, algum switch foi pressionado
+	
+; Este loop acende o display
+MAIN_LOOP:
+	MOV A, R0				; R0 será o índice, o número a ser mostrado
+	MOVC A, @A+DPTR	; Carrega o valor da tabela 'display' (com base no índice) em A
+	MOV DISPLAY, A		; Mostra o número no display
+    
+	ACALL DELAY			; Chama a rotina de delay
+	
+	; Verifica se algum switch ainda está pressionado
+	CLR CY
+	MOV A, #0FFh
+	SUBB A, SW
+	JZ STANDBY 	; Caso sim, retorna ao Standby, cancelando o loop
 
-sw1:
-	MOV R3, #04h
-repeat_sw1:
-	ACALL DELAY_LOOP_START
-	DJNZ R3, repeat_sw1
-	RET
+	INC R0	; Incrementa o índice para o próximo número
+	CJNE R0, #10, MAIN_LOOP	; Continua se o índice for menor que 10 (0 a 9)
 
+	; Quando a contagem chega a 10, reinicia-se o loop
+	MOV R0, #0
+	SJMP MAIN_LOOP	
 
-show:
-	MOV P1, #11000000b		;0
-	ACALL check_sw0
-	MOV P1, #11111001b		;1
-	ACALL check_sw0
-	MOV P1, #10100100b		;2
-	ACALL check_sw0 
-	MOV P1, #10110000b		;3
-	ACALL check_sw0
-	MOV P1, #10011001b		;4
-	ACALL check_sw0
-	MOV P1, #10010010b		;5
-	ACALL check_sw0
-	MOV P1, #10000010b		;6
-	ACALL check_sw0
-	MOV P1, #11111000b		;7
-	ACALL check_sw0
-	MOV P1, #10000000b		;8
-	ACALL check_sw0
-	MOV P1, #10011000b		;9
-	ACALL check_sw0
-	JMP standby
+; Sub-rotina de delay: 250ms 5 100 250
+DELAY:
+	JNB SW0, DELAY_LOOP_3	; Se SW0 está pressionado (nível 0), pula o loop externo (R4)
+	MOV R4, #4					; Se SW0 não estiver pressionado, configura R4 para repetir 4 vezes
+DELAY_LOOP_3:
+	MOV R3, #5            
+DELAY_LOOP_2:
+	MOV R2, #100          
+DELAY_LOOP_1:
+	MOV R1, #250          
+DELAY_LOOP_0:
+	DJNZ R1, $            
+	DJNZ R2, DELAY_LOOP_1 
+	DJNZ R3, DELAY_LOOP_2 
+	JNB SW0, RETURN           
+	DJNZ R4, DELAY_LOOP_3 
+RETURN:
+	RET                   
+                 
 
-; Estrutura para gastar tempo
-DELAY_LOOP_START:
-	MOV R2, #16				; 1ciclo
-DELAY_LOOP1:
-	MOV R1, #248			; 1ciclo
-DELAY_LOOP2:
-	MOV R0, #20				; 1ciclo
-DELAY_LOOP3:
-	NOP 					;1ciclo
-	DJNZ R0, DELAY_LOOP3	;2 ciclos
-	DJNZ R1, DELAY_LOOP2	;2 ciclos
-	DJNZ R2, DELAY_LOOP1	;2 ciclos
-	RET
-
-; 1 + 16*(1+2) + 16*248*(1+2) + 16*248*20*(1+2) =  
-
+database:
+db 0C0h		; Valor para o número 0 no display
+db 0F9h		; Valor para o número 1 no display
+db 0A4h		; Valor para o número 2 no display
+db 0B0h		; Valor para o número 3 no display
+db 99h		; Valor para o número 4 no display
+db 92h		; Valor para o número 5 no display
+db 82h		; Valor para o número 6 no display
+db 0F8h		; Valor para o número 7 no display
+db 80h		; Valor para o número 8 no display
+db 90h		; Valor para o número 9 no display
 
 end
