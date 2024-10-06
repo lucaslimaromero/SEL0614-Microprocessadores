@@ -32,4 +32,4 @@ Para contexto, abaixo esta uma tabela que mostra o mapeamento de valores para o 
 
 ![alt text](https://github.com/lucaslimaromero/SEL0614-Microprocessadores/blob/main/Imagens/Diagrama7seg.png)
 
-## Introdução
+## Código
