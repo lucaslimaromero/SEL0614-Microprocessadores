@@ -8,13 +8,14 @@ DISPLAY EQU P1
 MOV DPTR, #database	; Aponta DPTR para o início do array 'display'
 MOV R0, #0
 
-; Verificar se algum switch está pressionado
-STANDBY:
-	CLR CY
-	MOV A, #0FFh
-	SUBB A, SW
-	JZ STANDBY	; se A != 0, passa reto
-	MOV R0, #0	; Inicializa R0 com 0, o índice do número a ser mostrado
+CLEAR: ; Limpa o display
+	MOV DISPLAY, #0FFh 
+STANDBY: ; Verificar se algum switch está pressionado
+	CLR CY				; Limpa o carry
+	MOV A, #0FFh		; Atribui o valor máximo ao Acumulador
+	SUBB A, SW		; Realiza a subtração do valor máximo com o valor atual nos Switches 
+	JZ STANDBY		; se A != 0, passa reto
+	MOV R0, #0		; Inicializa R0 com 0, será o índice do número a ser mostrado
 	
 ; se veio até aqui, algum switch foi pressionado
 	
@@ -30,7 +31,7 @@ MAIN_LOOP:
 	CLR CY
 	MOV A, #0FFh
 	SUBB A, SW
-	JZ STANDBY 	; Caso sim, retorna ao Standby, cancelando o loop
+	JZ CLEAR 	; Caso sim, limpa o display e retorna ao Standby, cancelando o loop
 
 	INC R0	; Incrementa o índice para o próximo número
 	CJNE R0, #10, MAIN_LOOP	; Continua se o índice for menor que 10 (0 a 9)
@@ -39,10 +40,9 @@ MAIN_LOOP:
 	MOV R0, #0
 	SJMP MAIN_LOOP	
 
-; Sub-rotina de delay: 250ms 5 100 250
+; Sub-rotina de delay: 250ms ou 1s
 DELAY:
-	JNB SW0, DELAY_LOOP_3	; Se SW0 está pressionado (nível 0), pula o loop externo (R4)
-	MOV R4, #4					; Se SW0 não estiver pressionado, configura R4 para repetir 4 vezes
+	MOV R4, #4					
 DELAY_LOOP_3:
 	MOV R3, #5            
 DELAY_LOOP_2:
@@ -53,7 +53,7 @@ DELAY_LOOP_0:
 	DJNZ R1, $            
 	DJNZ R2, DELAY_LOOP_1 
 	DJNZ R3, DELAY_LOOP_2 
-	JNB SW0, RETURN           
+	JNB SW0, RETURN			; Caso SW0 não estiver pressionado, repete 4 vezes (250ms x 4)
 	DJNZ R4, DELAY_LOOP_3 
 RETURN:
 	RET                   
