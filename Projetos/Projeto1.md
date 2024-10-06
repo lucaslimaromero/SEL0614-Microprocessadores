@@ -14,7 +14,7 @@ O projeto apresentado visa desenvolver um cronômetro digital com intervalo vari
 - Ao executar o programa, a contagem não se inicia e os display estara desligado ate que **SW0** ou **SW1** sejam pressionados.
 
 
-### Diagrama
+### Diagrama - 8051
 
 ![alt text](https://github.com/lucaslimaromero/SEL0614-Microprocessadores/blob/main/Imagens/Diagrama8051.png)
 
