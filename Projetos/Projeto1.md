@@ -28,7 +28,9 @@ MOVC A, @A+DPTR         ; Carrega o padrão de bits do array 'database' para o n
 MOV DISPLAY, A          ; Envia o padrão de bits para P1, que controla o display
 ```
 
-Para contexto, abaixo esta uma tabela que mostra o mapeamento de valores para o display 7 segmentos e um esquematico deste mesmo display.
+Para contexto, abaixo esta uma tabela que mostra o mapeamento de valores para o display 7 segmentos e um esquematico deste mesmo display. 
+![image](https://github.com/user-attachments/assets/7c7b2bbe-ec8f-471d-8e00-b2176ad2610a)
+
 
 | Número | Valor Hexadecimal | Binário (P1.7 ... P1.0) | Segmentos Ativos    |
 |--------|-------------------|------------------------|---------------------|
