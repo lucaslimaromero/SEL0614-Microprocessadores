@@ -1,4 +1,4 @@
-# Projeto 1 - Cronômetro Digital usando Assembly e 8051
+![image](https://github.com/user-attachments/assets/6ac4b841-32e8-4cd8-ae7b-e9134a42eca8)# Projeto 1 - Cronômetro Digital usando Assembly e 8051
 
 Alunos:
 - Lucas Lima Romero (13676325)
@@ -28,7 +28,7 @@ MOVC A, @A+DPTR         ; Carrega o padrão de bits do array 'database' para o n
 MOV DISPLAY, A          ; Envia o padrão de bits para P1, que controla o display
 ```
 
-Para contexto, abaixo esta uma tabela que mostra o mapeamento de valores para o display 7 segmentos.
+Para contexto, abaixo esta uma tabela que mostra o mapeamento de valores para o display 7 segmentos e um esquematico deste mesmo display.
 
 | Número | Valor Hexadecimal | Binário (P1.7 ... P1.0) | Segmentos Ativos    |
 |--------|-------------------|------------------------|---------------------|
@@ -39,7 +39,7 @@ Para contexto, abaixo esta uma tabela que mostra o mapeamento de valores para o 
 | 4      | 99h               | 10011001               | b, c, f, g           |
 | 5      | 92h               | 10010010               | a, c, d, f, g        |
 | 6      | 82h               | 10000010               | a, c, d, e, f, g     |
-| 7      | 0F8h              | 11111000               | a, b, c              |
+| 7      | 0F8h              | 11111000               | a, b, c              | 
 | 8      | 80h               | 10000000               | a, b, c, d, e, f, g  |
 | 9      | 90h               | 10010000               | a, b, c, d, f, g     |
 
