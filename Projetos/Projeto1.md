@@ -9,7 +9,7 @@ Alunos:
 O projeto apresentado visa desenvolver um cronômetro digital com intervalo variável utilizando linguagem Assembly. Foi utilizado o simulador EdSim51DI, que replica um microcontrolador da família 8051.
 
 ### Especificações
-- Ao pressionar **SWO** o cronometro deve realizar uma contagem de 0 a 9 com intervalo de 0,25s.
+- Ao pressionar **SWO** o cronômetro deve realizar uma contagem de 0 a 9 com intervalo de 0,25s.
 - Ao pressionar **SW1** a contagem passa a ser realizada com intervalo de 1s.
 - Ao executar o programa, a contagem não se inicia e os display estara desligado ate que **SW0** ou **SW1** sejam pressionados.
 
@@ -18,4 +18,5 @@ O projeto apresentado visa desenvolver um cronômetro digital com intervalo vari
 
 ![alt text](https://github.com/lucaslimaromero/SEL0614-Microprocessadores/blob/main/Imagens/Diagrama8051.png)
 
+As portas do microcontrolador estao fixadas de acordo com o diagrama acima. Os pinos da porta 2 estao ligados a resistores de Pull-Up, que atuam como botões. Serão utilizados apenas SW0 e SW1 neste projeto.
 
