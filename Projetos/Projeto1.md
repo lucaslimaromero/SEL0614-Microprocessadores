@@ -30,17 +30,5 @@ MOV DISPLAY, A          ; Envia o padrão de bits para P1, que controla o displa
 
 Para contexto, abaixo esta uma tabela que mostra o mapeamento de valores para o display 7 segmentos e um esquematico deste mesmo display. 
 
-
-| Número | Valor Hexadecimal | Binário (P1.7 ... P1.0) | Segmentos Ativos    |
-|--------|-------------------|------------------------|---------------------|
-| 0      | 0C0h              | 11000000               | a, b, c, d, e, f     |
-| 1      | 0F9h              | 11111001               | b, c                 |
-| 2      | 0A4h              | 10100100               | a, b, d, e, g        |
-| 3      | 0B0h              | 10110000               | a, b, c, d, g        |
-| 4      | 99h               | 10011001               | b, c, f, g           |
-| 5      | 92h               | 10010010               | a, c, d, f, g        |
-| 6      | 82h               | 10000010               | a, c, d, e, f, g     |
-| 7      | 0F8h              | 11111000               | a, b, c              | 
-| 8      | 80h               | 10000000               | a, b, c, d, e, f, g  |
-| 9      | 90h               | 10010000               | a, b, c, d, f, g     |
+![image](https://github.com/user-attachments/assets/dfaddc7c-2068-48fa-93a2-20811129cf16)
 
