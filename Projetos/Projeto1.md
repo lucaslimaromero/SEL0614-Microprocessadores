@@ -18,5 +18,5 @@ O projeto apresentado visa desenvolver um cronômetro digital com intervalo vari
 
 ![alt text](https://github.com/lucaslimaromero/SEL0614-Microprocessadores/blob/main/Imagens/Diagrama8051.png)
 
-As portas do microcontrolador estao fixadas de acordo com o diagrama acima. Os pinos da porta 2 estao ligados a resistores de Pull-Up, que atuam como botões. Serão utilizados apenas SW0 e SW1 neste projeto.
+Os pinos do microcontrolador estao fixadas de acordo com o diagrama acima. Os pinos da porta 2 estao ligados a resistores de Pull-Up, que atuam como botões. Serão utilizados apenas SW0 e SW1 neste projeto.
 
