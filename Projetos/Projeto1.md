@@ -1,4 +1,4 @@
-Projeto 1 - Cronômetro Digital usando Assembly e 8051
+# Projeto 1 - Cronômetro Digital usando Assembly e 8051
 
 Alunos:
 - Lucas Lima Romero (13676325)
