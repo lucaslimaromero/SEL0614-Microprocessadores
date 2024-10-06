@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/6ac4b841-32e8-4cd8-ae7b-e9134a42eca8)# Projeto 1 - Cronômetro Digital usando Assembly e 8051
+Projeto 1 - Cronômetro Digital usando Assembly e 8051
 
 Alunos:
 - Lucas Lima Romero (13676325)
@@ -29,7 +29,6 @@ MOV DISPLAY, A          ; Envia o padrão de bits para P1, que controla o displa
 ```
 
 Para contexto, abaixo esta uma tabela que mostra o mapeamento de valores para o display 7 segmentos e um esquematico deste mesmo display. 
-![image](https://github.com/user-attachments/assets/7c7b2bbe-ec8f-471d-8e00-b2176ad2610a)
 
 
 | Número | Valor Hexadecimal | Binário (P1.7 ... P1.0) | Segmentos Ativos    |
