@@ -7,8 +7,8 @@ Alunos:
 
 ## Introdução
 O projeto apresentado visa desenvolver um cronômetro digital com intervalo variável utilizando linguagem Assembly. Foi utilizado o simulador EdSim51DI, que replica um microcontrolador da família 8051.
-### A
-**Diagrama**
+
+#### A
 
 ![alt text](https://github.com/lucaslimaromero/SEL0614-Microprocessadores/blob/main/Imagens/Diagrama8051.png)
 
