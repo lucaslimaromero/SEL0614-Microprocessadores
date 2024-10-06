@@ -22,6 +22,6 @@ Os pinos do microcontrolador estao fixadas de acordo com o diagrama acima. Os pi
 
 ```
 MOV A, 1               ; Carrega 1 no acumulador
-MOVC A, @A+DPTR         ; Carrega o padrão de bits do array 'database' para o numero 1, que seria a combinacao dos segmentos que forma o numero '1'.
+MOVC A, @A+DPTR         ; Carrega o padrão de bits do array 'database' para o numero 1, que seria a combinacao dos segmentos que forma o número '1'.
 MOV DISPLAY, A          ; Envia o padrão de bits para P1, que controla o display
 ```
