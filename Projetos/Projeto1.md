@@ -30,6 +30,6 @@ MOV DISPLAY, A          ; Envia o padrão de bits para P1, que controla o displa
 
 Para contexto, abaixo esta uma tabela que mostra o mapeamento de valores para o display 7 segmentos e um esquematico deste mesmo display. 
 
-file:///home/luciano/Pictures/Screenshots/Screenshot%20from%202024-10-06%2011-12-55.png![Uploading image.png…]()
+![alt text](https://github.com/lucaslimaromero/SEL0614-Microprocessadores/blob/main/Imagens/Diagrama7seg.png)
 
 
