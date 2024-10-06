@@ -9,8 +9,8 @@ Alunos:
 O projeto apresentado visa desenvolver um cronômetro digital com intervalo variável utilizando linguagem Assembly. Foi utilizado o simulador EdSim51DI, que replica um microcontrolador da família 8051.
 
 ### Especificações
-- Ao pressionar **SWO** o cronômetro deve realizar uma contagem de 0 a 9 com intervalo de 0,25s.
-- Ao pressionar **SW1** a contagem passa a ser realizada com intervalo de 1s.
+- Ao pressionar o botão **SWO** o cronômetro deve realizar uma contagem de 0 a 9 com intervalo de 0,25s.
+- Ao pressionar o botão **SW1** a contagem passa a ser realizada com intervalo de 1s.
 - Ao executar o programa, a contagem não se inicia e os display estara desligado ate que **SW0** ou **SW1** sejam pressionados.
 
 
@@ -27,3 +27,17 @@ MOV A, 1               ; Carrega 1 no acumulador
 MOVC A, @A+DPTR         ; Carrega o padrão de bits do array 'database' para o numero 1, que seria a combinação dos segmentos que forma o número '1'.
 MOV DISPLAY, A          ; Envia o padrão de bits para P1, que controla o display
 ```
+
+| Número | Valor Hexadecimal | Binário (P1.7 ... P1.0) | Segmentos Ativos    |
+|--------|-------------------|------------------------|---------------------|
+| 0      | 0C0h              | 11000000               | a, b, c, d, e, f     |
+| 1      | 0F9h              | 11111001               | b, c                 |
+| 2      | 0A4h              | 10100100               | a, b, d, e, g        |
+| 3      | 0B0h              | 10110000               | a, b, c, d, g        |
+| 4      | 99h               | 10011001               | b, c, f, g           |
+| 5      | 92h               | 10010010               | a, c, d, f, g        |
+| 6      | 82h               | 10000010               | a, c, d, e, f, g     |
+| 7      | 0F8h              | 11111000               | a, b, c              |
+| 8      | 80h               | 10000000               | a, b, c, d, e, f, g  |
+| 9      | 90h               | 10010000               | a, b, c, d, f, g     |
+
