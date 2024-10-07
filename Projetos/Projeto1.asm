@@ -5,6 +5,7 @@ SW EQU P2
 SW0 EQU P2.0
 SW1 EQU P2.1
 DISPLAY EQU P1
+MOV SP, #04Fh 			; Move o StackPointer para uma região distante
 MOV DPTR, #database	; Aponta DPTR para o início do array 'display'
 MOV R0, #0
 
@@ -25,7 +26,7 @@ MAIN_LOOP:
 	MOVC A, @A+DPTR	; Carrega o valor da tabela 'display' (com base no índice) em A
 	MOV DISPLAY, A		; Mostra o número no display
     
-	ACALL DELAY			; Chama a rotina de delay
+	CALL DELAY			; Chama a rotina de delay
 	
 	; Verifica se algum switch ainda está pressionado com um procedimento igual ao anterior
 	CLR CY
