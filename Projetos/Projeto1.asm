@@ -27,7 +27,7 @@ MAIN_LOOP:
     
 	ACALL DELAY			; Chama a rotina de delay
 	
-	; Verifica se algum switch ainda está pressionado
+	; Verifica se algum switch ainda está pressionado com um procedimento igual ao anterior
 	CLR CY
 	MOV A, #0FFh
 	SUBB A, SW
@@ -53,8 +53,9 @@ DELAY_LOOP_0:
 	DJNZ R1, $            
 	DJNZ R2, DELAY_LOOP_1 
 	DJNZ R3, DELAY_LOOP_2 
-	JNB SW0, RETURN			; Caso SW0 não estiver pressionado, repete 4 vezes (250ms x 4)
-	DJNZ R4, DELAY_LOOP_3 
+	JNB SW0, RETURN			; Caso SW0 estiver pressionado, acaba aqui
+	JB SW1, RETURN				; Caso SW1 não esteja pressionado, encerra tudo	
+	DJNZ R4, DELAY_LOOP_3	; Caso SW1 esteja pressionado, repete 4 vezes (250ms x 4)
 RETURN:
 	RET                   
                  
