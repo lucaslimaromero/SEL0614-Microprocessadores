@@ -1,5 +1,9 @@
 # Atividade Semanal 8
 
+Alunos:
+- Lucas Lima Romero (13676325)
+- Marco Antonio Gaspar Garcia (11833581)
+
 1. LCD com display 1023
 
 ```c

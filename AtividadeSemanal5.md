@@ -1,5 +1,9 @@
 # Atividade Semanal 5
 
+Alunos:
+- Lucas Lima Romero (13676325)
+- Marco Antonio Gaspar Garcia (11833581)
+
 Questão 10) 
 
 Responder com verdadeiro (V) ou falso (F) às seguintes afirmações sobre a Pilha (Stack).

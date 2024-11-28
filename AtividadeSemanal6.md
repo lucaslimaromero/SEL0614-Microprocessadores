@@ -1,6 +1,8 @@
 # Atividade Semanal 6
 
-
+Alunos:
+- Lucas Lima Romero (13676325)
+- Marco Antonio Gaspar Garcia (11833581)
 
 O código referente a primeira parte do exercício, que consiste em fazer o LED piscar conforme o acionamento do botão com PIC 18F4550, está disponível em ~/Códigos/atividade6_1.c. Aplicamos o tratamento do efeito bounce e aumentamos o delay para 500ms. O circuito referente ao código pode ser visto na figura 1.
 
